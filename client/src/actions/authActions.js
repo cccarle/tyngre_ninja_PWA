@@ -1,8 +1,7 @@
 import variabels from '../config/variabels'
 import firebase from '../config/firebase'
+import history from '../config/history'
 import { addPropertyToUser } from '../helpers/dbFunctions'
-
-const axios = require('axios')
 
 /* 
 Register new user to FireBase and write to the DB with userProperties 
@@ -62,4 +61,36 @@ export const signIn = async (store, userProperties, globalActions) => {
       }
     })
   return loginResult
+}
+
+/*
+Check if user is logged in, if a user exist display dashboard else loginpage
+*/
+
+export const checkIfUserIsLoggedIn = (store, globalActions) => {
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      console.log('logged in')
+      history.push('/dashboard')
+    } else {
+      console.log('not logged in')
+    }
+  })
+}
+
+/*
+Sign out user and display loginpage
+*/
+
+export const signOutUser = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      console.log('Signed out')
+      history.push('/')
+    })
+    .catch(function(error) {
+      console.log(`error accurred${error}`)
+    })
 }
