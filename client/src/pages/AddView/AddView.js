@@ -26,7 +26,11 @@ function AddView() {
   const [globalState, globalActions] = useGlobal()
 
   const tryAddWeightRecord = () => {
-    globalActions.addWeightRecord(globalState.date, globalState.weight)
+    globalActions.addWeightRecord(
+      globalState.date,
+      globalState.weight,
+      globalActions
+    )
   }
   return (
     <div className="componentContainer">

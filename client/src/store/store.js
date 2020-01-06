@@ -5,6 +5,8 @@ import variabels from '../config/variabels'
 
 const initialState = {
   showSpinner: false,
+  showChip: false,
+  showModal: false,
   authError: '',
   viewToShow: variabels.addView,
   weight: '',

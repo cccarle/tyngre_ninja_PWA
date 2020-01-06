@@ -18,6 +18,6 @@ export const setDate = (store, selectedDate, globalActions) => {
   store.setState({ date: selectedDate })
 }
 
-export const addWeightRecord = (store, date, weight) => {
-  addWeightRecordToFB(date, weight)
+export const addWeightRecord = (store, date, weight, globalActions) => {
+  addWeightRecordToFB(date, weight, globalActions)
 }

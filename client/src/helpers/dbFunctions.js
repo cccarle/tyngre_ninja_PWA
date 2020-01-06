@@ -15,7 +15,7 @@ export const addPropertyToUser = (userID, userProperties) => {
     })
 }
 
-export const addWeightRecordToFB = (currentDate, weight) => {
+export const addWeightRecordToFB = (currentDate, weight, globalActions) => {
   let userId = getUserID()
   let ref = firebase.database().ref('users/' + userId)
 
@@ -24,7 +24,15 @@ export const addWeightRecordToFB = (currentDate, weight) => {
     weight: weight
   }
 
-  ref.push(record)
+  ref.push().set(record, error => {
+    if (error) {
+      console.log(error)
+      globalActions.toggelModal(true)
+    } else {
+      console.log('saved')
+      globalActions.toggelChipModal(true)
+    }
+  })
 }
 
 const getUserID = () => {
