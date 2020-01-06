@@ -44,7 +44,7 @@ export default function RecordsList() {
               </ListItemAvatar>
               <ListItemText
                 primary={record.weight + 'KG'}
-                secondary={moment(record.recordDate).format('MMMM D, YYYY')}
+                secondary={record.recordDate}
               />
             </ListItem>
           ))

@@ -7,9 +7,12 @@ const initialState = {
   showSpinner: false,
   showChip: false,
   showModal: false,
+  showStartWeightModal: false,
   authError: '',
   viewToShow: variabels.historyView,
   weight: '',
+  startWeight: '',
+  startWeightFromDB: '',
   date: new Date(),
   records: []
 }

@@ -10,6 +10,8 @@ import Menu from '@material-ui/core/Menu'
 import MailIcon from '@material-ui/icons/Mail'
 import { ReactSVG } from 'react-svg'
 import svg from '../assets/img/link.svg'
+import SideNav from './sidenav'
+import Settings from '@material-ui/icons/Settings'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -110,20 +112,12 @@ export default function Navbar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <MenuItem>
-              <IconButton aria-label="Show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
+              <SideNav />
             </MenuItem>
           </div>
           <div className={classes.sectionMobile}>
             <MenuItem>
-              <IconButton aria-label="Show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
+              <SideNav />
             </MenuItem>
           </div>
         </Toolbar>

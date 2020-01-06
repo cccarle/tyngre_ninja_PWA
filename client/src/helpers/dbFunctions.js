@@ -1,6 +1,7 @@
 import firebase from '../config/firebase'
 let db = firebase.firestore()
 let realtimeDB = firebase.database()
+const moment = require('moment')
 
 export const addPropertyToUser = (userID, userProperties) => {
   const { email, firstName, lastName, username } = userProperties
@@ -12,6 +13,16 @@ export const addPropertyToUser = (userID, userProperties) => {
       username: username,
       firstName: firstName,
       lastName: lastName
+    })
+}
+
+export const addStartWeightRecordToFB = (weight, store, globalActions) => {
+  let userId = getUserID()
+
+  db.collection('users')
+    .doc(userId)
+    .set({
+      startWeight: weight
     })
 }
 
@@ -57,10 +68,35 @@ export const getRecordsFromFB = async (store, globalActions) => {
         }
       })
 
-      globalActions.setRecords(records, globalActions)
+      records.sort((a, b) => (a.recordDate > b.recordDate ? 1 : -1))
+
+      records.map(
+        record =>
+          (record.recordDate = moment(record.recordDate).format('MMMM D, YYYY'))
+      )
+
+      globalActions.setRecords(records.reverse(), globalActions)
+
       records = []
     })
 }
+
+export const getRecordsStartWeightFB = async (store, globalActions) => {
+  let userId = getUserID()
+  let startWeight
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(userId)
+    .onSnapshot(function(querySnapshot) {
+      if (querySnapshot.exists) {
+        startWeight = querySnapshot.data().startWeight
+      }
+      globalActions.setStartWeights(startWeight, globalActions)
+      globalActions.toggelStartWeightModal(false)
+    })
+}
+
 const getUserID = () => {
   return window.localStorage.getItem('userID')
 }

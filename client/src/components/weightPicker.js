@@ -39,7 +39,30 @@ export default function InputAdornments() {
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value })
     let weight = event.target.value
-    globalActions.setWeight(weight, globalActions)
+
+    if (globalState.showStartWeightModal) {
+      globalActions.setStartWeight(weight, globalActions)
+    } else {
+      globalActions.setWeight(weight, globalActions)
+    }
+  }
+
+  const renderLabel = () => {
+    if (!globalState.showStartWeightModal) {
+      return (
+        <FormHelperText className={classes.withoutLabel}>
+          Ange vikt
+        </FormHelperText>
+      )
+    }
+  }
+
+  const whichValueToRender = () => {
+    if (globalState.showStartWeightModal) {
+      return globalState.startWeight
+    } else {
+      return globalState.weight
+    }
   }
 
   return (
@@ -48,13 +71,11 @@ export default function InputAdornments() {
         fullWidth
         className={clsx(classes.margin, classes.textField)}
       >
-        <FormHelperText className={classes.withoutLabel}>
-          Ange vikt
-        </FormHelperText>
+        {renderLabel()}
         <OutlinedInput
           type="number"
           fullWidth
-          value={globalState.weight}
+          value={whichValueToRender()}
           onChange={handleChange('weight')}
           endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
           inputProps={{

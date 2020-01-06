@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { fetchRecords } from '../../actions'
+import { fetchRecords, fetchStartWeight } from '../../actions'
 import Navbar from '../../components/navbar'
 import useGlobal from '../../store/store'
 import BottomNav from '../../components/bottomNav'
@@ -7,6 +7,7 @@ import AddView from '../AddView/AddView'
 import HistoryView from '../HistoryView/HistoryView'
 import Chip from '../../components/succsChip'
 import ErrorModal from '../../components/errorModal'
+import StartWeightModal from '../../components/startWeightModal'
 import variabels from '../../config/variabels'
 
 function Dashboard() {
@@ -14,6 +15,7 @@ function Dashboard() {
 
   useEffect(() => {
     fetchRecords(globalState, globalActions)
+    fetchStartWeight(globalState, globalActions)
   }, [])
 
   function viewToShow() {
@@ -32,6 +34,7 @@ function Dashboard() {
       {viewToShow()}
       <Chip />
       <ErrorModal />
+      <StartWeightModal />
       <BottomNav />
     </div>
   )
