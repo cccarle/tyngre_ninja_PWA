@@ -19,19 +19,20 @@ function DatePicker() {
   const classes = useStyles()
 
   const setStartingTime = date => {
+    console.log(date)
     setStart(date)
     globalActions.setDate(date, globalActions)
   }
 
   return (
     <div className={classes.root}>
-      <MuiPickersUtilsProvider fu utils={DateFnsUtils} svLocale={svLocale}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils} svLocale={svLocale}>
         <Fragment>
           <DateTimePicker
             fullWidth
             variant="outlined"
             ampm={false}
-            value={start}
+            value={globalState.date}
             label="Ange datum"
             cancelLabel="Avsluta"
             onChange={setStartingTime}

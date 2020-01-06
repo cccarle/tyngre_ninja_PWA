@@ -17,24 +17,50 @@ export const addPropertyToUser = (userID, userProperties) => {
 
 export const addWeightRecordToFB = (currentDate, weight, globalActions) => {
   let userId = getUserID()
-  let ref = firebase.database().ref('users/' + userId)
 
   let record = {
     recordDate: currentDate.toJSON(),
     weight: weight
   }
 
-  ref.push().set(record, error => {
-    if (error) {
+  db.collection('users')
+    .doc(userId)
+    .collection('records')
+    .doc()
+    .set(record, { merge: true })
+    .then(function() {
+      globalActions.toggelChipModal(true)
+      globalActions.clearFields()
+    })
+    .catch(function(error) {
       console.log(error)
       globalActions.toggelModal(true)
-    } else {
-      console.log('saved')
-      globalActions.toggelChipModal(true)
-    }
-  })
+    })
 }
 
+export const getRecordsFromFB = async (store, globalActions) => {
+  let userId = getUserID()
+  let records = []
+
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(userId)
+    .collection('records')
+    .onSnapshot(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        if (doc.exists) {
+          records.push({
+            weight: doc.data().weight,
+            recordDate: doc.data().recordDate
+          })
+        }
+      })
+
+      globalActions.setRecords(records, globalActions)
+      records = []
+    })
+}
 const getUserID = () => {
   return window.localStorage.getItem('userID')
 }

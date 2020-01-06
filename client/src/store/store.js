@@ -8,9 +8,10 @@ const initialState = {
   showChip: false,
   showModal: false,
   authError: '',
-  viewToShow: variabels.addView,
+  viewToShow: variabels.historyView,
   weight: '',
-  date: ''
+  date: new Date(),
+  records: []
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions)

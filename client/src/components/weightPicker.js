@@ -52,8 +52,9 @@ export default function InputAdornments() {
           Ange vikt
         </FormHelperText>
         <OutlinedInput
+          type="number"
           fullWidth
-          value={values.weight}
+          value={globalState.weight}
           onChange={handleChange('weight')}
           endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
           inputProps={{
