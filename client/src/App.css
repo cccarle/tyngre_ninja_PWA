@@ -21,6 +21,19 @@
   /* background-image: url('../src/assets/img/bg.jpg'); */
 }
 
+.componentContainer {
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  width: auto;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

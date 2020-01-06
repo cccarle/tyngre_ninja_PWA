@@ -6,7 +6,9 @@ import variabels from '../config/variabels'
 const initialState = {
   showSpinner: false,
   authError: '',
-  viewToShow: ''
+  viewToShow: variabels.addView,
+  weight: '',
+  date: ''
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions)
