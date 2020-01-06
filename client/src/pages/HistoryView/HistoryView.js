@@ -7,11 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
-    alignContent: 'center',
-    alignItems: 'center',
-    justifyItems: 'center',
-    marginTop: '17%'
+    flexDirection: 'column'
   },
   headText: {
     fontSize: 22,
@@ -20,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   cont: {
     backgroundColor: '#ededed',
     display: 'flex',
-    height: '10%',
+    height: '8%',
     width: 'auto',
     minWidth: '100%',
     position: 'fixed',
@@ -36,8 +32,18 @@ const useStyles = makeStyles(theme => ({
     color: 'white'
   },
   listContainer: {
-    marginTop: '17%',
-    marginBottom: '17%',
+    marginBottom: '5rem',
+    marginTop: `${theme.spacing(2)}px ${theme.spacing(3)}px ${theme.spacing(
+      3
+    )}px`,
+    [theme.breakpoints.up(500 + theme.spacing(3))]: {
+      marginTop: '11%',
+      marginBottom: '5rem'
+    },
+    [theme.breakpoints.down(500 + theme.spacing(3))]: {
+      marginTop: '25%',
+      marginBottom: '5rem'
+    },
     zIndex: -1
   }
 }))

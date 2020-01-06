@@ -6,16 +6,15 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
-import ImageIcon from '@material-ui/icons/Image'
-import WorkIcon from '@material-ui/icons/Work'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
+
+import CheckIcon from '@material-ui/icons/Check'
 const moment = require('moment')
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: 'auto',
     height: 'auto',
-    overflow: 'scroll',
+    overflow: 'hidden',
     flexDirection: 'column',
     alignContent: 'center',
     alignItems: 'center',
@@ -40,7 +39,7 @@ export default function RecordsList() {
             <ListItem className={classes.item}>
               <ListItemAvatar>
                 <Avatar>
-                  <BeachAccessIcon />
+                  <CheckIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText
