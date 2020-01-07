@@ -26,12 +26,18 @@ export const addStartWeightRecordToFB = (weight, store, globalActions) => {
     })
 }
 
-export const addWeightRecordToFB = (currentDate, weight, globalActions) => {
+export const addWeightRecordToFB = (
+  currentDate,
+  weight,
+  globalActions,
+  globalState
+) => {
   let userId = getUserID()
 
   let record = {
     recordDate: currentDate.toJSON(),
-    weight: weight
+    weight: weight,
+    startWeight: globalState.startWeightFromDB
   }
 
   db.collection('users')

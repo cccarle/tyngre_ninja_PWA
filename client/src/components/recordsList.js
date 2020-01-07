@@ -36,7 +36,10 @@ export default function RecordsList() {
     <List className={classes.root}>
       {globalState.records !== undefined
         ? globalState.records.map(record => (
-            <ListItem className={classes.item}>
+            <ListItem
+              key={record.recordDate + Math.random()}
+              className={classes.item}
+            >
               <ListItemAvatar>
                 <Avatar>
                   <CheckIcon />

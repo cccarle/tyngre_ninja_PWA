@@ -29,7 +29,8 @@ function AddView() {
     globalActions.addWeightRecord(
       globalState.date,
       globalState.weight,
-      globalActions
+      globalActions,
+      globalState
     )
   }
   return (

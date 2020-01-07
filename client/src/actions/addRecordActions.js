@@ -19,8 +19,14 @@ export const addStartWeightRecord = (store, weight, globalActions) => {
   addStartWeightRecordToFB(store, weight, globalActions)
 }
 
-export const addWeightRecord = (store, date, weight, globalActions) => {
-  addWeightRecordToFB(date, weight, globalActions)
+export const addWeightRecord = (
+  store,
+  date,
+  weight,
+  globalActions,
+  globalState
+) => {
+  addWeightRecordToFB(date, weight, globalActions, globalState)
 }
 
 export const clearFields = store => {

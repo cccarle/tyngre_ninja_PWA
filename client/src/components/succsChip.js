@@ -113,7 +113,7 @@ export default function CustomizedSnackbars() {
         <MySnackbarContentWrapper
           onClose={handleClose}
           variant="success"
-          message={'Vikt tillagd'}
+          message="Vikt tillagd"
         />
       </Snackbar>
     </div>
