@@ -5,19 +5,58 @@ import Button from '@material-ui/core/Button'
 import DatePicker from '../../components/datePicker'
 import WeightPicker from '../../components/weightPicker'
 import { makeStyles } from '@material-ui/core/styles'
+import '../../App.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column'
   },
-  headText: {
-    fontSize: 22
+
+  cont: {
+    backgroundColor: '#ededed',
+    display: 'flex',
+    height: '8%',
+    width: 'auto',
+    minWidth: '100%',
+    position: 'fixed',
+    top: 60,
+    zIndex: 1,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyItems: 'center'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#d30d2b',
     color: 'white'
+  },
+  listContainer: {
+    display: 'flex',
+    height: '100vh',
+    margin: '10%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    zIndex: -1
+  },
+  large: {
+    width: theme.spacing(25),
+    height: theme.spacing(25)
+  },
+  todaysNinja: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  ninjaInformation: {
+    marginTop: theme.spacing(5),
+    width: '100%'
+  },
+  margin: {
+    marginTop: theme.spacing(2)
   }
 }))
 
@@ -34,23 +73,23 @@ function AddView() {
     )
   }
   return (
-    <div className="componentContainer">
-      <div>
-        <Typography className={classes.headText} variant="overline">
-          Lägg till vikt
-        </Typography>
-      </div>
+    <div>
       <div className={classes.root}>
+        <div className={classes.cont}>
+          <span className="textFontHeader">Lägg till vikt</span>
+        </div>
+      </div>
+
+      <div className={classes.listContainer}>
         <DatePicker />
         <WeightPicker />
         <Button
           type="submit"
-          fullWidth
           variant="contained"
           className={classes.submit}
           onClick={() => tryAddWeightRecord()}
         >
-          <Typography variant="overline">Lägg till </Typography>
+          <span className="textFontButton">Lägg till vikt</span>
         </Button>
       </div>
     </div>

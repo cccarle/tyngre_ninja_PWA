@@ -103,6 +103,31 @@ export const getRecordsStartWeightFB = async (store, globalActions) => {
     })
 }
 
+export const listenNinjaChangedFromFB = (globalActions, globalState) => {
+  let ninjaRecords = []
+
+  firebase
+    .firestore()
+    .collection('ninjaOfTheDay')
+    .onSnapshot(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        if (doc.exists) {
+          let properDate = moment(doc.data().recordDate)
+          if (moment(properDate).isSame(moment(), 'day')) {
+            ninjaRecords.push(doc.data())
+          } else {
+            ninjaRecords = []
+          }
+        }
+      })
+
+      globalActions.setNinjaRecords(ninjaRecords, globalActions, globalState)
+
+      //  console.log(ninjaRecords)
+      ninjaRecords = []
+    })
+}
+
 const getUserID = () => {
   return window.localStorage.getItem('userID')
 }

@@ -9,12 +9,14 @@ const initialState = {
   showModal: false,
   showStartWeightModal: false,
   authError: '',
-  viewToShow: variabels.historyView,
+  viewToShow: variabels.ninjaView,
   weight: '',
   startWeight: '',
   startWeightFromDB: '',
   date: new Date(),
-  records: []
+  records: [],
+  ninjaRecords: [],
+  ninjaOfTheDay: []
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions)

@@ -3,6 +3,7 @@ import useGlobal from '../../store/store'
 import Typography from '@material-ui/core/Typography'
 import RecordsList from '../../components/recordsList'
 import { makeStyles } from '@material-ui/core/styles'
+import '../../App.css'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,9 +57,7 @@ function HistoryView() {
     <div>
       <div className={classes.root}>
         <div className={classes.cont}>
-          <Typography className={classes.headText} variant="overline">
-            Historik
-          </Typography>
+          <span className="textFontHeader">Historik</span>
         </div>
       </div>
 

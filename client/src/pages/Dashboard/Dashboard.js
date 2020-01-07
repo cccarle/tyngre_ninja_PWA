@@ -1,10 +1,15 @@
 import React, { useEffect } from 'react'
-import { fetchRecords, fetchStartWeight } from '../../actions'
+import {
+  fetchRecords,
+  fetchStartWeight,
+  listenForNinjaRecords
+} from '../../actions'
 import Navbar from '../../components/navbar'
 import useGlobal from '../../store/store'
 import BottomNav from '../../components/bottomNav'
 import AddView from '../AddView/AddView'
 import HistoryView from '../HistoryView/HistoryView'
+import NinjaOfTheDayView from '../NinjaOfTheDayView/NinjaOfTheDayView'
 import Chip from '../../components/succsChip'
 import ErrorModal from '../../components/errorModal'
 import StartWeightModal from '../../components/startWeightModal'
@@ -16,6 +21,7 @@ function Dashboard() {
   useEffect(() => {
     fetchRecords(globalState, globalActions)
     fetchStartWeight(globalState, globalActions)
+    listenForNinjaRecords(globalState, globalActions)
   }, [])
 
   function viewToShow() {
@@ -25,6 +31,10 @@ function Dashboard() {
 
     if (globalState.viewToShow == variabels.historyView) {
       return <HistoryView />
+    }
+
+    if (globalState.viewToShow == variabels.ninjaView) {
+      return <NinjaOfTheDayView />
     }
   }
 

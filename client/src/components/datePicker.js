@@ -11,8 +11,7 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap',
-    margin: theme.spacing(1)
+    flexWrap: 'wrap'
   },
   withoutLabel: {
     marginBottom: theme.spacing(1)

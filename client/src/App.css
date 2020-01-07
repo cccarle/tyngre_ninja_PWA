@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap');
+
 .App {
   text-align: center;
 }
@@ -19,6 +21,31 @@
   height: 100vh;
 
   /* background-image: url('../src/assets/img/bg.jpg'); */
+}
+
+.textFont {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: 2%;
+}
+
+.textFontButton {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+.textFontBig {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: auto;
+  text-align: center;
+}
+
+.textFontHeader {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  margin-left: 20px;
 }
 
 .componentContainer {

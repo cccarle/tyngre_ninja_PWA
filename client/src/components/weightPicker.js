@@ -18,11 +18,10 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    width: 'auto'
   },
-  margin: {
-    margin: theme.spacing(1)
-  },
+
   withoutLabel: {
     marginBottom: theme.spacing(1)
   },
@@ -67,22 +66,17 @@ export default function InputAdornments() {
 
   return (
     <div className={classes.root}>
-      <FormControl
+      {renderLabel()}
+      <OutlinedInput
+        type="number"
         fullWidth
-        className={clsx(classes.margin, classes.textField)}
-      >
-        {renderLabel()}
-        <OutlinedInput
-          type="number"
-          fullWidth
-          value={whichValueToRender()}
-          onChange={handleChange('weight')}
-          endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
-          inputProps={{
-            'aria-label': 'weight'
-          }}
-        />
-      </FormControl>
+        value={whichValueToRender()}
+        onChange={handleChange('weight')}
+        endAdornment={<InputAdornment position="end">KG</InputAdornment>}
+        inputProps={{
+          'aria-label': 'weight'
+        }}
+      />
     </div>
   )
 }
