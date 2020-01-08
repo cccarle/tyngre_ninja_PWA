@@ -33,13 +33,15 @@ const useStyles = makeStyles(theme => ({
   },
   listContainer: {
     display: 'flex',
-    height: '100vh',
-    margin: '10%',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    height: '100%',
+    padding: 0,
+    margin: 0,
+    zIndex: -1,
+    alignContent: 'center',
     alignItems: 'center',
+    justifyContent: 'center',
     textAlign: 'center',
-    zIndex: -1
+    flexDirection: 'column'
   },
   large: {
     width: theme.spacing(25),
@@ -73,14 +75,10 @@ function AddView() {
     )
   }
   return (
-    <div>
-      <div className={classes.root}>
-        <div className={classes.cont}>
-          <span className="textFontHeader">Lägg till vikt</span>
-        </div>
-      </div>
-
-      <div className={classes.listContainer}>
+    <div className={classes.listContainer}>
+      <span className="textFontHeader">Lägg till vikt</span>
+      <span className={classes.margin}></span>
+      <div>
         <DatePicker />
         <WeightPicker />
         <Button
@@ -97,3 +95,26 @@ function AddView() {
 }
 
 export default AddView
+
+// return (
+//   <div>
+//     <div className={classes.root}>
+//       <div className={classes.cont}>
+//         <span className="textFontHeader">Lägg till vikt</span>
+//       </div>
+//     </div>
+
+//     <div className={classes.listContainer}>
+//       <DatePicker />
+//       <WeightPicker />
+//       <Button
+//         type="submit"
+//         variant="contained"
+//         className={classes.submit}
+//         onClick={() => tryAddWeightRecord()}
+//       >
+//         <span className="textFontButton">Lägg till vikt</span>
+//       </Button>
+//     </div>
+//   </div>
+// )

@@ -112,11 +112,12 @@ export const listenNinjaChangedFromFB = (globalActions, globalState) => {
     .onSnapshot(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         if (doc.exists) {
-          let properDate = moment(doc.data().recordDate)
+          console.log(doc.data())
+          let properDate = moment(doc.data().day)
+          console.log(doc.data())
           if (moment(properDate).isSame(moment(), 'day')) {
+            console.log(doc.data())
             ninjaRecords.push(doc.data())
-          } else {
-            ninjaRecords = []
           }
         }
       })

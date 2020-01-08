@@ -72,10 +72,19 @@ export const checkIfUserIsLoggedIn = (store, globalActions) => {
     if (user) {
       console.log('logged in')
       history.push('/dashboard')
+
+      window.setTimeout(() => {
+        globalActions.setLoggedInStatus(store, true)
+      }, 1000)
     } else {
       console.log('not logged in')
+      globalActions.setLoggedInStatus(store, false)
     }
   })
+}
+
+export const setLoggedInStatus = (store, status) => {
+  store.setState({ isLoggedIn: status })
 }
 
 /*

@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
       marginBottom: '5rem'
     },
     [theme.breakpoints.down(500 + theme.spacing(3))]: {
-      marginTop: '25%',
+      marginTop: '30%',
       marginBottom: '5rem'
     },
     zIndex: -1

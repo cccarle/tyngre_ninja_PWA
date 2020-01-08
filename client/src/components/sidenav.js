@@ -65,7 +65,7 @@ export default function TemporaryDrawer() {
             variant="contained"
             className={classes.submit}
           >
-            <Typography variant="overline"> Uppdatera</Typography>
+            <span className="textFontButton">Uppdatera</span>
           </Button>
         </ListItem>
       </List>
@@ -79,7 +79,7 @@ export default function TemporaryDrawer() {
             variant="contained"
             className={classes.submit}
           >
-            <Typography variant="overline"> Tillbaka</Typography>
+            <span className="textFontButton">Tillbaka</span>
           </Button>
         </ListItem>
         <ListItem button>
@@ -90,7 +90,7 @@ export default function TemporaryDrawer() {
             variant="contained"
             className={classes.submit}
           >
-            <Typography variant="overline"> Logga ut</Typography>
+            <span className="textFontButton">Logga ut</span>
           </Button>
         </ListItem>
       </List>
