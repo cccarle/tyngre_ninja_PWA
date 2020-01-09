@@ -49,6 +49,8 @@ export const signIn = async (store, userProperties, globalActions) => {
     .then(data => {
       const userID = data.user.uid
 
+      console.log(data.user)
+
       window.localStorage.setItem('userID', userID)
     })
     .catch(function(error) {
@@ -71,6 +73,8 @@ export const checkIfUserIsLoggedIn = (store, globalActions) => {
     if (user) {
       history.push('/dashboard')
 
+      globalActions.setLoggedInUserEmail(user.providerData[0].uid)
+
       window.setTimeout(() => {
         globalActions.setLoggedInStatus(store, true)
       }, 1000)
@@ -83,6 +87,10 @@ export const checkIfUserIsLoggedIn = (store, globalActions) => {
 
 export const setLoggedInStatus = (store, status) => {
   store.setState({ isLoggedIn: status })
+}
+
+export const setLoggedInUserEmail = (store, email) => {
+  store.setState({ loggedInUserEmail: email })
 }
 
 /*

@@ -12,7 +12,7 @@ Components
 */
 import SignInPage from './pages/Auth/SignIn'
 import Dashboard from './pages/Dashboard/Dashboard'
-import NijaOfTheDay from './pages/NinjaOfTheDayView/NinjaOfTheDayView'
+import NijaOfTheDay from './pages/PublicView/PublicView'
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center'
   },
   spinner: {
-    marginTop: '1%'
+    marginTop: '4%'
   }
 }))
 
@@ -36,7 +36,8 @@ function App() {
   if (!globalState.isLoggedIn) {
     return (
       <div className="center">
-        <h1 className="textFontHeader">Ninja Projektet</h1>
+        <span className="textFontXL">ninja-projektet</span>
+        <span className="textFontPublic">not approved by tyngre.</span>
         <div className={classes.spinner}>
           <Spinner className={classes.spinner} />
         </div>

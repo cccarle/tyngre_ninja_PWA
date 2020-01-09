@@ -8,6 +8,7 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople'
 import AssignmentIcon from '@material-ui/icons/Assignment'
 import Icon from '@material-ui/core/Icon'
 import variabels from '../config/variabels'
+import '../App.css'
 
 const useStyles = makeStyles({
   stickToBottom: {
@@ -43,7 +44,7 @@ export default function ButtonNav() {
           setValue(newValue)
         }}
         onClick={() => globalActions.setView(variabels.ninjaView)}
-        label="Nuvarande Ninja"
+        label={<span className={'textFontBottomNav'}>Dagens Ninja</span>}
         className={classes.icon}
         icon={
           <Icon className={classes.icon}>
@@ -53,7 +54,7 @@ export default function ButtonNav() {
       />
       <BottomNavigationAction
         value={1}
-        label="Lägg till vikt"
+        label={<span className={'textFontBottomNav'}>Lägg till vikt</span>}
         icon={
           <Icon className={classes.icon}>
             <AddWeight color={classes.text} />}
@@ -72,7 +73,7 @@ export default function ButtonNav() {
           setValue(newValue)
         }}
         onClick={() => globalActions.setView(variabels.historyView)}
-        label="Historik"
+        label={<span className={'textFontBottomNav'}>Historik</span>}
         className={classes.icon}
         icon={
           <Icon className={classes.icon}>

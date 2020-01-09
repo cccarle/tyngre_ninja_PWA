@@ -62,8 +62,9 @@ export default function SimpleModal() {
         onClose={handleClose}
       >
         <div style={modalStyle} className={classes.paper}>
-          <h3>Uppdatera startvikt</h3>
+          <h2 className={'textFontBig'}>Uppdatera startvikt</h2>
           <WeightPicker />
+          <div className={classes.margin}></div>
 
           <Button
             type="submit"

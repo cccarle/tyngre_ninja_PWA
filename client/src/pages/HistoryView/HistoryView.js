@@ -46,12 +46,28 @@ const useStyles = makeStyles(theme => ({
       marginBottom: '5rem'
     },
     zIndex: -1
+  },
+  margin: {
+    marginTop: '1%'
   }
 }))
 
 function HistoryView() {
   const classes = useStyles()
   const [globalState, globalActions] = useGlobal()
+
+  const renderEmptyRecord = () => {
+    if (globalState.records !== undefined && globalState.records.length === 0) {
+      return (
+        <div className={classes.margin}>
+          {' '}
+          <span className="textFontHeaderSmall">
+            Inga tidigare vikter inlagda.
+          </span>
+        </div>
+      )
+    }
+  }
 
   return (
     <div>
@@ -60,6 +76,7 @@ function HistoryView() {
           <span className="textFontHeader">Historik</span>
         </div>
       </div>
+      {renderEmptyRecord()}
 
       <div className={classes.listContainer}>
         <RecordsList />

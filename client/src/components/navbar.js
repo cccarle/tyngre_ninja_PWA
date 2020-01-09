@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import useGlobal from '../store/store'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -9,10 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 import MailIcon from '@material-ui/icons/Mail'
 import { ReactSVG } from 'react-svg'
-import svg from '../assets/img/link.svg'
+import svg from '../assets/img/ninja.svg'
 import SideNav from './sidenav'
 import Settings from '@material-ui/icons/Settings'
-
+import '../App.css'
+import { checkIfUserIsLoggedIn } from '../actions'
 const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
@@ -48,11 +50,15 @@ const useStyles = makeStyles(theme => ({
   },
   bg: {
     backgroundColor: '#1B1B1E'
+  },
+  navText: {
+    marginLeft: '2vh'
   }
 }))
 
 export default function Navbar() {
   const classes = useStyles()
+  const [globalState, globalActions] = useGlobal()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
@@ -97,6 +103,12 @@ export default function Navbar() {
     />
   )
 
+  const checkIfPublic = () => {
+    if (globalState.loggedInUserEmail.length > 0) {
+      return <SideNav />
+    }
+  }
+
   return (
     <div className={classes.grow}>
       <AppBar className={classes.bg} position="fixed">
@@ -104,21 +116,21 @@ export default function Navbar() {
           <ReactSVG
             beforeInjection={svg => {
               svg.classList.add('svg-class-name')
-              svg.setAttribute('style', 'width:90px')
+              svg.setAttribute('style', 'height:25px')
             }}
             src={svg}
           />
 
+          <div className={classes.navText}>
+            <span className="textFontNav">ninja-projektet</span>
+          </div>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <MenuItem>
-              <SideNav />
-            </MenuItem>
+            <MenuItem>{checkIfPublic()}</MenuItem>
           </div>
           <div className={classes.sectionMobile}>
-            <MenuItem>
-              <SideNav />
-            </MenuItem>
+            <MenuItem>{checkIfPublic()}</MenuItem>
           </div>
         </Toolbar>
       </AppBar>

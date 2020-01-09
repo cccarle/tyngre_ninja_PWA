@@ -42,7 +42,6 @@ export default function RecordsList() {
 
   const renderRecordList = () => {
     if (globalState.records !== undefined && globalState.records.length === 0) {
-      console.log('jksdfsdnfdsj')
       return (
         <div>
           {' '}

@@ -13,7 +13,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox'
 import MailIcon from '@material-ui/icons/Mail'
 import Settings from '@material-ui/icons/Settings'
 import Typography from '@material-ui/core/Typography'
-
+import '../App.css'
 const useStyles = makeStyles({
   list: {
     width: 250
@@ -54,7 +54,18 @@ export default function TemporaryDrawer() {
       <List>
         <ListItem button>
           <ListItemIcon>
-            Startvikt: {globalState.startWeightFromDB}KG
+            <span className={'fontText'}>
+              Hej! {globalState.loggedInUserEmail}
+            </span>
+          </ListItemIcon>
+        </ListItem>
+
+        <ListItem button>
+          <ListItemIcon>
+            <span className={'fontText'}>
+              {' '}
+              Startvikt: {globalState.startWeightFromDB}KG
+            </span>
           </ListItemIcon>
         </ListItem>
         <ListItem button>
@@ -92,6 +103,28 @@ export default function TemporaryDrawer() {
           >
             <span className="textFontButton">Logga ut</span>
           </Button>
+        </ListItem>
+      </List>
+
+      <Divider />
+      <List>
+        <ListItem>
+          <div>
+            <span className="textFont">
+              {' '}
+              Icons made by{' '}
+              <a
+                href="https://www.flaticon.com/authors/freepik"
+                title="Freepik"
+              >
+                Freepik
+              </a>{' '}
+              from{' '}
+              <a href="https://www.flaticon.com/" title="Flaticon">
+                www.flaticon.com
+              </a>
+            </span>
+          </div>
         </ListItem>
       </List>
     </div>

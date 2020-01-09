@@ -18,7 +18,8 @@ const initialState = {
   date: new Date(),
   records: [],
   ninjaRecords: [],
-  ninjaOfTheDay: []
+  ninjaOfTheDay: [],
+  loggedInUserEmail: ''
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions)

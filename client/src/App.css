@@ -9,6 +9,9 @@
   pointer-events: none;
 }
 
+#bg-public {
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -29,6 +32,25 @@
   margin-top: 2%;
 }
 
+.textFontPublic {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+}
+
+.textFontBottomNav {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.textFontNav {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: 1%;
+  margin-left: 1%;
+  font-size: 15px;
+}
+
 .textFontButton {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
@@ -46,6 +68,17 @@
   font-weight: 500;
   font-size: 30px;
   margin-left: 20px;
+}
+
+.textFontXL {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 50px;
+}
+.textFontXL2 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 50px;
 }
 
 .textFontHeaderSmall {
@@ -81,6 +114,7 @@
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+  text-align: center;
 }
 .App-header {
   background-color: #282c34;
@@ -95,6 +129,14 @@
 
 .App-link {
   color: #61dafb;
+}
+
+#rounded {
+  background: rgb(65, 64, 64);
+
+  -webkit-box-shadow: 2px 8px 5px 0px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 2px 8px 5px 0px rgba(0, 0, 0, 1);
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 1);
 }
 
 @keyframes App-logo-spin {
