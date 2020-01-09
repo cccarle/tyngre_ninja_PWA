@@ -95,7 +95,7 @@ export default function TemporaryDrawer() {
         </ListItem>
         <ListItem button>
           <Button
-            onClick={() => signOutUser()}
+            onClick={() => signOutUser(globalActions)}
             type="submit"
             fullWidth
             variant="contained"

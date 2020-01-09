@@ -72,7 +72,7 @@ export default function InputAdornments() {
       <OutlinedInput
         type="number"
         fullWidth
-        value={whichValueToRender()}
+        placeholder={whichValueToRender()}
         onChange={handleChange('weight')}
         endAdornment={<InputAdornment position="end">KG</InputAdornment>}
         inputProps={{

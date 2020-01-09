@@ -34,8 +34,6 @@ export default function RecordsList() {
   const [globalState, globalActions] = useGlobal()
   const classes = useStyles()
 
-  console.log(globalState.records.length)
-
   const tryDeleteRecord = record => {
     deleteRecord(record, globalActions)
   }

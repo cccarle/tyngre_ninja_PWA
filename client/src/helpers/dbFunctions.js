@@ -40,12 +40,44 @@ export const addWeightRecordToFB = (
     startWeight: globalState.startWeightFromDB
   }
 
-  db.collection('users')
+  let doc = db
+    .collection('users')
     .doc(userId)
     .collection('records')
     .doc()
+
+  doc
     .set(record, { merge: true })
-    .then(function() {
+    .then(() => {
+      console.log(doc.id)
+
+      console.log(globalState)
+      let properDate = moment(record.recordDate)
+
+      let userDB
+      if (globalState.loggedInUserEmail === 'ninjaalex@tyngre.com') {
+        userDB = 'Alex'
+      }
+
+      if (globalState.loggedInUserEmail === 'ninjaandreas@tyngre.com') {
+        userDB = 'Andreas'
+      }
+      if (moment(properDate).isSame(moment(), 'day')) {
+        let diff = Math.abs(record.startWeight - record.weight)
+        db.collection('ninjaOfTheDay')
+          .doc(doc.id)
+          .set(
+            {
+              day: record.recordDate,
+              user: userDB,
+              weightDiff: diff,
+              weight: record.weight,
+              startWeight: record.startWeight
+            },
+            { merge: true }
+          )
+      }
+
       globalActions.toggelChipModal(true)
       globalActions.clearFields()
     })
@@ -98,8 +130,12 @@ export const deleteRecordFromFB = (record, globalActions) => {
     .collection('records')
     .doc(record.id)
     .delete()
-    .then(function() {
+    .then(() => {
       console.log('Document successfully deleted!')
+
+      db.collection('ninjaOfTheDay')
+        .doc(record.id)
+        .delete()
     })
     .catch(function(error) {
       console.error('Error removing document: ', error)

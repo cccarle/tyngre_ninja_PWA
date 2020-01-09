@@ -49,8 +49,6 @@ export const signIn = async (store, userProperties, globalActions) => {
     .then(data => {
       const userID = data.user.uid
 
-      console.log(data.user)
-
       window.localStorage.setItem('userID', userID)
     })
     .catch(function(error) {
@@ -97,13 +95,14 @@ export const setLoggedInUserEmail = (store, email) => {
 Sign out user and display loginpage
 */
 
-export const signOutUser = () => {
+export const signOutUser = globalActions => {
   firebase
     .auth()
     .signOut()
     .then(() => {
       console.log('Signed out')
       history.push('/')
+      globalActions.toggelSpinner(false)
     })
     .catch(function(error) {
       console.log(`error accurred${error}`)

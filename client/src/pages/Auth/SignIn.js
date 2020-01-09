@@ -13,8 +13,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Spinner from '../../components/spinner'
 import { ReactSVG } from 'react-svg'
-import svg from '../../assets/img/link.svg'
-
+import svg from '../../assets/img/ninja.svg'
+import '../../App.css'
 const useStyles = makeStyles(theme => ({
   main: {
     display: 'flex',
@@ -74,10 +74,14 @@ export default function SignIn() {
     setValues({ ...values, [prop]: event.target.value })
   }
 
-  const attemtToSignIn = () => {
+  const attemtToSignIn = async () => {
     if (values.email && values.password) {
-      globalActions.signIn(values, globalActions)
-      setValues({ error: '' })
+      let err = await globalActions.signIn(values, globalActions)
+      console.log(err)
+
+      if (err) {
+        setValues({ error: 'Något gick fel, pröva igen.' })
+      }
     } else {
       setValues({ error: 'Email eller Lösenord saknas' })
     }
@@ -104,7 +108,6 @@ export default function SignIn() {
             src={svg}
           />
           <Typography variant="overline">Ninja Projektet</Typography>
-
           <div className={classes.form}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
