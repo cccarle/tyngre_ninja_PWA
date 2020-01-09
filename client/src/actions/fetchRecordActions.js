@@ -1,6 +1,7 @@
 import {
   getRecordsFromFB,
-  getRecordsStartWeightFB
+  getRecordsStartWeightFB,
+  deleteRecordFromFB
 } from '../helpers/dbFunctions'
 
 export const fetchRecords = async (store, globalActions) => {
@@ -18,3 +19,7 @@ export const fetchStartWeight = async (store, globalActions) => {
 export const setStartWeights = (store, weight) => {
   store.setState({ startWeightFromDB: weight })
 }
+
+export const deleteRecord = (record, globalActions) => [
+  deleteRecordFromFB(record, globalActions)
+]

@@ -22,7 +22,7 @@ exports.listenForAndreasRecords = functions.firestore
       let diff = Math.abs(record.startWeight - record.weight)
       firestore
         .collection('ninjaOfTheDay')
-        .doc()
+        .doc(snap.id)
         .set(
           {
             day: record.recordDate,
@@ -38,6 +38,22 @@ exports.listenForAndreasRecords = functions.firestore
     return record
   })
 
+exports.listenForAndreasNinjaRecords = functions.firestore
+  .document(`users/${andreasID}/records/{record}`)
+  .onDelete((snap, context) => {
+    const record = snap.data()
+    const recordID = snap.id
+
+    console.log(recordID)
+
+    firestore
+      .collection('ninjaOfTheDay')
+      .doc(recordID)
+      .delete()
+
+    return record
+  })
+
 exports.listenForAlexRecords = functions.firestore
   .document(`users/${alexID}/records/{record}`)
   .onCreate((snap, context) => {
@@ -48,7 +64,7 @@ exports.listenForAlexRecords = functions.firestore
       let diff = Math.abs(record.startWeight - record.weight)
       firestore
         .collection('ninjaOfTheDay')
-        .doc()
+        .doc(snap.id)
         .set(
           {
             day: record.recordDate,
@@ -60,6 +76,21 @@ exports.listenForAlexRecords = functions.firestore
           { merge: true }
         )
     }
+
+    return record
+  })
+
+exports.listenForAlexNinjaRecords = functions.firestore
+  .document(`users/${alexID}/records/{record}`)
+  .onDelete((snap, context) => {
+    const record = snap.data()
+    const recordID = snap.id
+    let properDate = moment(record.recordDate)
+
+    firestore
+      .collection('ninjaOfTheDay')
+      .doc(recordID)
+      .delete()
 
     return record
   })

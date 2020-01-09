@@ -67,12 +67,14 @@ function AddView() {
   const [globalState, globalActions] = useGlobal()
 
   const tryAddWeightRecord = () => {
-    globalActions.addWeightRecord(
-      globalState.date,
-      globalState.weight,
-      globalActions,
-      globalState
-    )
+    if (globalState.weight != '') {
+      globalActions.addWeightRecord(
+        globalState.date,
+        globalState.weight,
+        globalActions,
+        globalState
+      )
+    }
   }
   return (
     <div className={classes.listContainer}>
@@ -95,26 +97,3 @@ function AddView() {
 }
 
 export default AddView
-
-// return (
-//   <div>
-//     <div className={classes.root}>
-//       <div className={classes.cont}>
-//         <span className="textFontHeader">Lägg till vikt</span>
-//       </div>
-//     </div>
-
-//     <div className={classes.listContainer}>
-//       <DatePicker />
-//       <WeightPicker />
-//       <Button
-//         type="submit"
-//         variant="contained"
-//         className={classes.submit}
-//         onClick={() => tryAddWeightRecord()}
-//       >
-//         <span className="textFontButton">Lägg till vikt</span>
-//       </Button>
-//     </div>
-//   </div>
-// )

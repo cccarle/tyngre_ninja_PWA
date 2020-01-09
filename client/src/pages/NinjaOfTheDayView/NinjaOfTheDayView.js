@@ -24,7 +24,15 @@ const useStyles = makeStyles(theme => ({
     height: theme.spacing(25)
   },
   todaysNinja: {
-    backgroundColor: 'blue'
+    flexDirection: 'column',
+    display: 'flex',
+    height: '100%',
+    padding: 0,
+    margin: 0,
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
   },
   ninjaInformation: {
     marginTop: theme.spacing(5),
@@ -41,8 +49,6 @@ const useStyles = makeStyles(theme => ({
 function NinjaOfTheDayView() {
   const [globalState, globalActions] = useGlobal()
   const classes = useStyles()
-
-  console.log(globalState.ninjaOfTheDay)
 
   const ninjaMessageToShow = () => {
     if (globalState.ninjaOfTheDay.message) {
@@ -66,7 +72,7 @@ function NinjaOfTheDayView() {
 
     if (globalState.ninjaOfTheDay.ninjaOfTheDayObj != undefined) {
       return (
-        <div className={classes.waitingForNinja}>
+        <div className={classes.todaysNinja}>
           <Avatar
             alt="Remy Sharp"
             src={globalState.ninjaOfTheDay.ninjaOfTheDayObj.img}

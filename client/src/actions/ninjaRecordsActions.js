@@ -4,6 +4,7 @@ const andreasImage = require('../assets/img/andreas.jpg')
 
 export const listenForNinjaRecords = (globalState, globalActions) => {
   listenNinjaChangedFromFB(globalActions, globalState)
+  console.log('dasd')
 }
 
 export const setNinjaRecords = (
@@ -18,7 +19,10 @@ export const setNinjaRecords = (
 
 export const calculateNinjaOfTheDay = (ninjaRecords, store) => {
   let ninjaData = []
+
+  // kolla så att två inte har samma namn
   if (ninjaRecords.length == 2) {
+    ninjaRecords = removeDuplicates(ninjaRecords, 'user')
     addProfileImageToRecords(ninjaRecords)
     let ninjaOfTheDayObj = ninjaRecords.reduce((prev, current) =>
       prev.weightDiff > current.weightDiff ? prev : current
@@ -58,4 +62,19 @@ const addProfileImageToRecords = ninjaRecords => {
       record.img = andreasImage
     }
   })
+}
+
+const removeDuplicates = (originalArray, prop) => {
+  var newArray = []
+  var lookupObject = {}
+
+  for (var i in originalArray) {
+    lookupObject[originalArray[i][prop]] = originalArray[i]
+  }
+
+  for (i in lookupObject) {
+    newArray.push(lookupObject[i])
+  }
+
+  return newArray
 }

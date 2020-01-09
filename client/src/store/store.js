@@ -9,6 +9,7 @@ const initialState = {
   showModal: false,
   showStartWeightModal: false,
   isLoggedIn: false,
+  firstLogIn: false,
   authError: '',
   viewToShow: variabels.ninjaView,
   weight: '',

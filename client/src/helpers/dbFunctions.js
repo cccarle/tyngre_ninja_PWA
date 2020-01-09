@@ -68,6 +68,7 @@ export const getRecordsFromFB = async (store, globalActions) => {
       querySnapshot.forEach(function(doc) {
         if (doc.exists) {
           records.push({
+            id: doc.id,
             weight: doc.data().weight,
             recordDate: doc.data().recordDate
           })
@@ -84,6 +85,25 @@ export const getRecordsFromFB = async (store, globalActions) => {
       globalActions.setRecords(records.reverse(), globalActions)
 
       records = []
+    })
+}
+
+export const deleteRecordFromFB = (record, globalActions) => {
+  let userId = getUserID()
+
+  firebase
+    .firestore()
+    .collection('users')
+    .doc(userId)
+    .collection('records')
+    .doc(record.id)
+    .delete()
+    .then(function() {
+      console.log('Document successfully deleted!')
+    })
+    .catch(function(error) {
+      console.error('Error removing document: ', error)
+      globalActions.toggelModal(true)
     })
 }
 
@@ -112,12 +132,14 @@ export const listenNinjaChangedFromFB = (globalActions, globalState) => {
     .onSnapshot(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         if (doc.exists) {
-          console.log(doc.data())
           let properDate = moment(doc.data().day)
-          console.log(doc.data())
           if (moment(properDate).isSame(moment(), 'day')) {
-            console.log(doc.data())
             ninjaRecords.push(doc.data())
+            globalActions.setNinjaRecords(
+              ninjaRecords,
+              globalActions,
+              globalState
+            )
           }
         }
       })

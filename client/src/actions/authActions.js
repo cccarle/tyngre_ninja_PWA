@@ -48,9 +48,8 @@ export const signIn = async (store, userProperties, globalActions) => {
     .signInWithEmailAndPassword(email, password)
     .then(data => {
       const userID = data.user.uid
+
       window.localStorage.setItem('userID', userID)
-      // history.push('/dashboard')
-      console.log(data)
     })
     .catch(function(error) {
       globalActions.toggelSpinner(false)
@@ -70,7 +69,6 @@ Check if user is logged in, if a user exist display dashboard else loginpage
 export const checkIfUserIsLoggedIn = (store, globalActions) => {
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      console.log('logged in')
       history.push('/dashboard')
 
       window.setTimeout(() => {

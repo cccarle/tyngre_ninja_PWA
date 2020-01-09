@@ -4,7 +4,7 @@ import useGlobal from './store/store'
 import history from './config/history'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { checkIfUserIsLoggedIn } from './actions'
+import { checkIfUserIsLoggedIn, listenForNinjaRecords } from './actions'
 import Spinner from './components/spinner'
 import './App.css'
 /* 
@@ -12,7 +12,7 @@ Components
 */
 import SignInPage from './pages/Auth/SignIn'
 import Dashboard from './pages/Dashboard/Dashboard'
-
+import NijaOfTheDay from './pages/NinjaOfTheDayView/NinjaOfTheDayView'
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -30,6 +30,7 @@ function App() {
 
   useEffect(() => {
     checkIfUserIsLoggedIn(globalState, globalActions)
+    listenForNinjaRecords(globalState, globalActions)
   }, [])
 
   if (!globalState.isLoggedIn) {
@@ -48,6 +49,7 @@ function App() {
       <div className="appContainer">
         <Switch>
           <Route exact path="/" component={SignInPage} />
+          <Route exact path="/public" component={NijaOfTheDay} />
           <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
