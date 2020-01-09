@@ -1,7 +1,12 @@
 import variabels from '../config/variabels'
 import firebase from '../config/firebase'
 import history from '../config/history'
-import { addPropertyToUser } from '../helpers/dbFunctions'
+import {
+  addPropertyToUser,
+  checkIfFirstLogIn,
+  updateFirstTimeLogInStatus
+} from '../helpers/dbFunctions'
+import { hi } from 'date-fns/locale'
 
 /* 
 Register new user to FireBase and write to the DB with userProperties 
@@ -49,6 +54,11 @@ export const signIn = async (store, userProperties, globalActions) => {
     .then(data => {
       const userID = data.user.uid
 
+      if (data.additionalUserInfo.isNewUser == false) {
+        let a = true
+        globalActions.setFirstTimeLoggedInStatus(a)
+      }
+
       window.localStorage.setItem('userID', userID)
     })
     .catch(function(error) {
@@ -66,10 +76,15 @@ export const signIn = async (store, userProperties, globalActions) => {
 Check if user is logged in, if a user exist display dashboard else loginpage
 */
 
-export const checkIfUserIsLoggedIn = (store, globalActions) => {
-  firebase.auth().onAuthStateChanged(user => {
+export const checkIfUserIsLoggedIn = async (store, globalActions) => {
+  firebase.auth().onAuthStateChanged(async user => {
     if (user) {
-      history.push('/dashboard')
+      let isFirstLogIn = await checkIfFirstLogIn(user.uid)
+      if (isFirstLogIn) {
+        history.push('/first-time-login')
+      } else {
+        history.push('/dashboard')
+      }
 
       globalActions.setLoggedInUserEmail(user.providerData[0].uid)
 
@@ -87,8 +102,17 @@ export const setLoggedInStatus = (store, status) => {
   store.setState({ isLoggedIn: status })
 }
 
+export const setFirstTimeLoggedInStatus = (store, status) => {
+  console.log(status, store)
+  store.setState({ firstLogIn: status })
+}
+
 export const setLoggedInUserEmail = (store, email) => {
   store.setState({ loggedInUserEmail: email })
+}
+
+export const updateFirstTimeLogInStatus1 = () => {
+  updateFirstTimeLogInStatus()
 }
 
 /*

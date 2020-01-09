@@ -21,8 +21,29 @@ export const addStartWeightRecordToFB = (weight, store, globalActions) => {
 
   db.collection('users')
     .doc(userId)
-    .set({
-      startWeight: weight
+    .set(
+      {
+        startWeight: weight
+      },
+      { merge: true }
+    )
+}
+
+export const updateFirstTimeLogInStatus = () => {
+  let userId = getUserID()
+  var washingtonRef = db.collection('users').doc(userId)
+
+  // Set the "capital" field of the city 'DC'
+  return washingtonRef
+    .update({
+      firstTimeLogIn: false
+    })
+    .then(function() {
+      console.log('Document successfully updated!')
+    })
+    .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error('Error updating document: ', error)
     })
 }
 
@@ -185,6 +206,28 @@ export const listenNinjaChangedFromFB = (globalActions, globalState) => {
       //  console.log(ninjaRecords)
       ninjaRecords = []
     })
+}
+
+export const checkIfFirstLogIn = async userID => {
+  var docRef = firebase
+    .firestore()
+    .collection('users')
+    .doc(userID)
+
+  let a = await docRef
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        return doc.data().firstTimeLogIn
+      } else {
+        console.log('No such document!')
+      }
+    })
+    .catch(function(error) {
+      console.log('Error getting document:', error)
+    })
+
+  return a
 }
 
 const getUserID = () => {
