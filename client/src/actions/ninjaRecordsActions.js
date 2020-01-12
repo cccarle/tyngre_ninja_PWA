@@ -19,6 +19,10 @@ export const setNinjaRecords = (
 export const calculateNinjaOfTheDay = (ninjaRecords, store) => {
   let ninjaData = []
 
+  if (ninjaRecords.length > 2) {
+    ninjaRecords.pop()
+  }
+
   if (ninjaRecords.length == 2) {
     ninjaRecords = removeDuplicates(ninjaRecords, 'user')
     addProfileImageToRecords(ninjaRecords)
