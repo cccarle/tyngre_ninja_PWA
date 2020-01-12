@@ -82,6 +82,19 @@
   font-weight: 600;
   font-size: 50px;
 }
+
+.textFontSmall {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: 2%;
+  font-size: 13px;
+}
+
+.textFontTodaysNinja {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+}
 .textFontXL2 {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
@@ -146,11 +159,47 @@
   box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 1);
 }
 
+.row {
+  display: flex;
+  margin-top: 2%;
+  text-align: center;
+  width: 101%;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 60%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.hairline-border {
+  box-shadow: 0 0 0 0.25px;
+  color: black;
+  width: 60%;
+}
+
+@media (min-resolution: 2dppx) {
+  .hairline-border {
+    box-shadow: 0 0 0 0.25px;
+  }
+}
+
+@media (min-resolution: 3dppx) {
+  .hairline-border {
+    box-shadow: 0 0 0 0.25px;
+  }
+}
+
+@media (min-resolution: 4dppx) {
+  .hairline-border {
+    box-shadow: 0 0 0 0.25px;
   }
 }

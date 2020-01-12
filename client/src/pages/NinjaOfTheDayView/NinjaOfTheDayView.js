@@ -19,11 +19,12 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    flexDirection: 'column'
   },
   large: {
-    width: theme.spacing(20),
-    height: 'auto'
+    width: theme.spacing(15),
+    height: theme.spacing(15)
   },
   todaysNinja: {
     flexDirection: 'column',
@@ -36,6 +37,40 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     textAlign: 'center'
   },
+  todaysNinjaUpperContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '101%',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center'
+  },
+  todaysNinjaLowContainer: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1),
+
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'start'
+  },
+  cont: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '72%',
+    alignContent: 'center',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    textAlign: 'start'
+  },
+  todaysNinjaUpperContainerText: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
   ninjaInformation: {
     marginTop: theme.spacing(5),
     width: '100%'
@@ -43,20 +78,11 @@ const useStyles = makeStyles(theme => ({
   margin: {
     marginTop: theme.spacing(2)
   },
+  margin2: {
+    marginTop: theme.spacing(5)
+  },
   svg: {
     margin: theme.spacing(2)
-  },
-  root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(16),
-      height: theme.spacing(16)
-    }
-  },
-  paper: {
-    padding: '5%',
-    backgroundColor: '#ededed'
   }
 }))
 
@@ -85,37 +111,90 @@ function NinjaOfTheDayView() {
     }
 
     if (globalState.ninjaOfTheDay.ninjaOfTheDayObj != undefined) {
+      console.log(globalState.ninjaOfTheDay)
       return (
         <div className={classes.todaysNinja}>
-          <span className="textFontXL2">Dagens Ninja</span>
-          <div className={classes.margin}></div>
+          <span className="textFontXL">Dagens Ninja</span>
+          <div className={classes.todaysNinjaUpperContainer}>
+            <ReactSVG
+              beforeInjection={svg => {
+                svg.classList.add('svg-class-name')
+                svg.setAttribute('style', 'width:140px')
+              }}
+              src={svg}
+              className={classes.svg}
+            />
 
-          <Avatar
-            alt="Remy Sharp"
-            src={globalState.ninjaOfTheDay.ninjaOfTheDayObj.img}
-            className={classes.large}
-            id="square"
-            variant="rounded"
-          />
+            <div className={classes.todaysNinjaUpperContainerText}>
+              <span className="textFontTodaysNinja">
+                {globalState.ninjaOfTheDay.ninjaOfTheDayObj.user}
+              </span>
 
-          <div className={classes.margin}></div>
+              <span className="textFont">
+                Differens:{' '}
+                {globalState.ninjaOfTheDay.ninjaOfTheDayObj.weightDiff} KG
+              </span>
+            </div>
+          </div>
 
-          <span className="textFont">
-            {globalState.ninjaOfTheDay.ninjaOfTheDayObj.user}
-          </span>
+          <div className="hairline-border "></div>
 
-          <span className="textFont">
-            Dagsvikt: {globalState.ninjaOfTheDay.ninjaOfTheDayObj.weight} KG
-          </span>
-          <span className="textFont">
-            Startvikt: {globalState.ninjaOfTheDay.ninjaOfTheDayObj.startWeight}{' '}
-            KG
-          </span>
-
-          <span className="textFont">
-            Differens: {globalState.ninjaOfTheDay.ninjaOfTheDayObj.weightDiff}{' '}
-            KG
-          </span>
+          <div className="row">
+            <div className="column">
+              <div className={classes.todaysNinjaLowContainer}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src={globalState.ninjaOfTheDay.ninjaRecords[0].img}
+                  className={classes.large}
+                  variant="rounded"
+                />
+                <div className={classes.cont}>
+                  <span className="textFontSmall">
+                    {globalState.ninjaOfTheDay.ninjaRecords[0].user}
+                  </span>
+                  <span className="textFontSmall">
+                    Dagsvikt: {globalState.ninjaOfTheDay.ninjaRecords[0].weight}{' '}
+                    KG
+                  </span>
+                  <span className="textFontSmall">
+                    Startvikt:{' '}
+                    {globalState.ninjaOfTheDay.ninjaRecords[0].startWeight} KG
+                  </span>
+                  <span className="textFontSmall">
+                    Differens:{' '}
+                    {globalState.ninjaOfTheDay.ninjaRecords[0].weightDiff} KG
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="column">
+              <div className={classes.todaysNinjaLowContainer}>
+                <Avatar
+                  alt="Remy Sharp"
+                  src={globalState.ninjaOfTheDay.ninjaRecords[1].img}
+                  className={classes.large}
+                  variant="rounded"
+                />
+                <div className={classes.cont}>
+                  <span className="textFontSmall">
+                    {globalState.ninjaOfTheDay.ninjaRecords[1].user}
+                  </span>
+                  <span className="textFontSmall">
+                    Dagsvikt: {globalState.ninjaOfTheDay.ninjaRecords[1].weight}{' '}
+                    KG
+                  </span>
+                  <span className="textFontSmall">
+                    Startvikt:{' '}
+                    {globalState.ninjaOfTheDay.ninjaRecords[1].startWeight} KG
+                  </span>
+                  <span className="textFontSmall">
+                    Differens:{' '}
+                    {globalState.ninjaOfTheDay.ninjaRecords[1].weightDiff} KG
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )
     }
