@@ -1,5 +1,5 @@
 {
-  "short_name": "Tyngre Ninja",
+  "short_name": "Ninjaprojektet",
   "name": "Ninjaprojektet",
   "icons": [
     {
@@ -54,7 +54,7 @@
       "density": "4.0"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://tyngreninja.firebaseapp.com/login",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

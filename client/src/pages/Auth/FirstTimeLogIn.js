@@ -66,6 +66,9 @@ const useStyles = makeStyles(theme => ({
   },
   textPadding: {
     padding: '3%'
+  },
+  padding: {
+    padding: '3%'
   }
 }))
 
@@ -102,7 +105,7 @@ function AddView() {
       </div>
 
       <span className={classes.margin}></span>
-      <div>
+      <div className={classes.padding}>
         <OutlinedInput
           type="number"
           fullWidth

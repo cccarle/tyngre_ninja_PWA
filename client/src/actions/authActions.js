@@ -4,7 +4,8 @@ import history from '../config/history'
 import {
   addPropertyToUser,
   checkIfFirstLogIn,
-  updateFirstTimeLogInStatus
+  updateFirstTimeLogInStatus,
+  addStartProperties
 } from '../helpers/dbFunctions'
 import { hi } from 'date-fns/locale'
 
@@ -54,12 +55,9 @@ export const signIn = async (store, userProperties, globalActions) => {
     .then(data => {
       const userID = data.user.uid
 
-      if (data.additionalUserInfo.isNewUser == false) {
-        let a = true
-        globalActions.setFirstTimeLoggedInStatus(a)
-      }
-
       window.localStorage.setItem('userID', userID)
+
+      // addStartProperties(userID)
     })
     .catch(function(error) {
       globalActions.toggelSpinner(false)
@@ -103,7 +101,6 @@ export const setLoggedInStatus = (store, status) => {
 }
 
 export const setFirstTimeLoggedInStatus = (store, status) => {
-  console.log(status, store)
   store.setState({ firstLogIn: status })
 }
 
@@ -125,7 +122,7 @@ export const signOutUser = globalActions => {
     .signOut()
     .then(() => {
       console.log('Signed out')
-      history.push('/')
+      history.push('/login')
       globalActions.toggelSpinner(false)
     })
     .catch(function(error) {

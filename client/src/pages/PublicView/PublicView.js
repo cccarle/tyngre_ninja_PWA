@@ -4,8 +4,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import { ReactSVG } from 'react-svg'
 import Navbar from '../../components/navbar'
-
+import history from '../../config/history'
 import svg from '../../assets/img/ninja.svg'
+import Button from '@material-ui/core/Button'
+
 import '../../App.css'
 
 const useStyles = makeStyles(theme => ({
@@ -117,6 +119,7 @@ function NinjaOfTheDayView() {
         <div className={classes.margin2}></div>
 
         {ninjaMessageToShow()}
+        <div className={classes.margin2}></div>
       </div>
     </div>
   )

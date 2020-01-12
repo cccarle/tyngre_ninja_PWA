@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(1, 0, 0),
     backgroundColor: '#d30d2b',
     color: 'white'
   },

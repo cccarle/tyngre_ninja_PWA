@@ -3,6 +3,14 @@ let db = firebase.firestore()
 let realtimeDB = firebase.database()
 const moment = require('moment')
 
+export const addStartProperties = userID => {
+  db.collection('users')
+    .doc(userID)
+    .set({
+      startWeight: '',
+      firstTimeLogIn: true
+    })
+}
 export const addPropertyToUser = (userID, userProperties) => {
   const { email, firstName, lastName, username } = userProperties
 
@@ -33,7 +41,6 @@ export const updateFirstTimeLogInStatus = () => {
   let userId = getUserID()
   var washingtonRef = db.collection('users').doc(userId)
 
-  // Set the "capital" field of the city 'DC'
   return washingtonRef
     .update({
       firstTimeLogIn: false
@@ -70,21 +77,24 @@ export const addWeightRecordToFB = (
   doc
     .set(record, { merge: true })
     .then(() => {
-      console.log(doc.id)
-
-      console.log(globalState)
       let properDate = moment(record.recordDate)
 
       let userDB
-      if (globalState.loggedInUserEmail === 'ninjaalex@tyngre.com') {
+      if (globalState.loggedInUserEmail === 'alex@tyngre.se') {
         userDB = 'Alex'
       }
 
-      if (globalState.loggedInUserEmail === 'ninjaandreas@tyngre.com') {
+      if (globalState.loggedInUserEmail === 'andreas@tyngre.se') {
         userDB = 'Andreas'
       }
       if (moment(properDate).isSame(moment(), 'day')) {
-        let diff = Math.abs(record.startWeight - record.weight)
+        let diff
+        if (record.weight > record.startWeight) {
+          diff = 0
+        } else {
+          diff = Math.abs(record.startWeight - record.weight).toFixed(1)
+        }
+
         db.collection('ninjaOfTheDay')
           .doc(doc.id)
           .set(

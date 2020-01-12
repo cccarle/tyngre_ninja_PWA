@@ -4,6 +4,5 @@ Show :: boolean
 */
 
 export const setView = (store, view) => {
-  console.log(view)
   store.setState({ viewToShow: view })
 }

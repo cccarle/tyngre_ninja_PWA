@@ -49,11 +49,9 @@ function App() {
     <Router history={history}>
       <div className="appContainer">
         <Switch>
-          <Route exact path="/" component={SignInPage} />
-
+          <Route exact path="/login" component={SignInPage} />
+          <Route exact path="/" component={NijaOfTheDay} />
           <Route exact path="/first-time-login" component={FirstTimeLogIn} />
-
-          <Route exact path="/public" component={NijaOfTheDay} />
           <Route exact path="/dashboard" component={Dashboard} />
         </Switch>
       </div>

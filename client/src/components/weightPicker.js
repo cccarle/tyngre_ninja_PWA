@@ -58,7 +58,6 @@ export default function InputAdornments() {
 
   const whichValueToRender = () => {
     if (globalState.showStartWeightModal) {
-      console.log(globalState.startWeight)
       return globalState.startWeightFromDB
     } else {
       return globalState.weight

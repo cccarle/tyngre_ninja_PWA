@@ -106,6 +106,23 @@ export default function Navbar() {
   const checkIfPublic = () => {
     if (globalState.loggedInUserEmail.length > 0) {
       return <SideNav />
+    } else {
+      return (
+        <div>
+          <span className="textFontMin">
+            {' '}
+            Icons made by{' '}
+            <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+              Freepik
+            </a>{' '}
+            <br />
+            from{' '}
+            <a href="https://www.flaticon.com/" title="Flaticon">
+              www.flaticon.com
+            </a>
+          </span>
+        </div>
+      )
     }
   }
 
