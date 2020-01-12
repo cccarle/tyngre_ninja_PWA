@@ -3,7 +3,6 @@ import { Router, Route, Switch } from 'react-router-dom'
 import useGlobal from './store/store'
 import history from './config/history'
 import { makeStyles } from '@material-ui/core/styles'
-import FirstTimeLogIn from './pages/Auth/FirstTimeLogIn'
 import { checkIfUserIsLoggedIn, listenForNinjaRecords } from './actions'
 import Spinner from './components/spinner'
 import './App.css'
@@ -13,6 +12,9 @@ Components
 import SignInPage from './pages/Auth/SignIn'
 import Dashboard from './pages/Dashboard/Dashboard'
 import NijaOfTheDay from './pages/PublicView/PublicView'
+import FirstTimeLogIn from './pages/Auth/FirstTimeLogIn'
+import NotFoundView from './pages/NotFoundView/NotFoundView'
+
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
@@ -53,6 +55,7 @@ function App() {
           <Route exact path="/" component={NijaOfTheDay} />
           <Route exact path="/first-time-login" component={FirstTimeLogIn} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route component={NotFoundView} />
         </Switch>
       </div>
     </Router>
