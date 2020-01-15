@@ -111,7 +111,6 @@ function NinjaOfTheDayView() {
     }
 
     if (globalState.ninjaOfTheDay.ninjaOfTheDayObj != undefined) {
-      console.log(globalState.ninjaOfTheDay)
       return (
         <div className={classes.todaysNinja}>
           <span className="textFontXL">Dagens Ninja</span>

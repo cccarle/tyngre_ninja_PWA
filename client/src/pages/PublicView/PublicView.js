@@ -8,7 +8,6 @@ import history from '../../config/history'
 import svg from '../../assets/img/ninja.svg'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-
 import '../../App.css'
 
 const useStyles = makeStyles(theme => ({
@@ -111,7 +110,6 @@ function NinjaOfTheDayView() {
     }
 
     if (globalState.ninjaOfTheDay.ninjaOfTheDayObj != undefined) {
-      console.log(globalState.ninjaOfTheDay)
       return (
         <div className={classes.todaysNinja}>
           <span className="textFontXL">Dagens Ninja</span>

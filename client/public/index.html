@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
+<script language="javascript">!function(n,e){var t,o,i,c=[],f={passive:!0,capture:!0},r=new Date,a="pointerup",u="pointercancel";function p(n,c){t||(t=c,o=n,i=new Date,w(e),s())}function s(){o>=0&&o<i-r&&(c.forEach(function(n){n(o,t)}),c=[])}function l(t){if(t.cancelable){var o=(t.timeStamp>1e12?new Date:performance.now())-t.timeStamp;"pointerdown"==t.type?function(t,o){function i(){p(t,o),r()}function c(){r()}function r(){e(a,i,f),e(u,c,f)}n(a,i,f),n(u,c,f)}(o,t):p(o,t)}}function w(n){["click","mousedown","keydown","touchstart","pointerdown"].forEach(function(e){n(e,l,f)})}w(n),self.perfMetrics=self.perfMetrics||{},self.perfMetrics.onFirstInputDelay=function(n){c.push(n),s()}}(addEventListener,removeEventListener);</script>
+
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
@@ -41,6 +43,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>ninja-projektet</title>
+</script>
 </head>
 
 <body>
@@ -58,6 +61,21 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+   // The perfMetrics object is created by the code that goes in <head>.
+perfMetrics.onFirstInputDelay(function(delay, evt) {
+  ga('send', 'event', {
+    eventCategory: 'Perf Metrics',
+    eventAction: 'first-input-delay',
+    eventLabel: evt.type,
+    // Event values must be an integer.
+    eventValue: Math.round(delay),
+    // Exclude this event from bounce rate calculations.
+    nonInteraction: true,
+  });
+});
+    </script>
 </body>
 
 </html>

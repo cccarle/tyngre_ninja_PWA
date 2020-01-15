@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { checkIfUserIsLoggedIn, listenForNinjaRecords } from './actions'
 import Spinner from './components/spinner'
 import './App.css'
+import firebase from './config/firebase'
 /* 
 Components
 */
@@ -33,6 +34,8 @@ function App() {
   useEffect(() => {
     checkIfUserIsLoggedIn(globalState, globalActions)
     listenForNinjaRecords(globalState, globalActions)
+    firebase.performance()
+    firebase.analytics()
   }, [])
 
   if (!globalState.isLoggedIn) {
