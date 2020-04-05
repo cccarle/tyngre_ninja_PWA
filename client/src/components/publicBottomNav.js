@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function ButtonNav() {
+export default function PublicBottomNav() {
   const [globalState, globalActions] = useGlobal()
 
   const classes = useStyles()
@@ -43,7 +43,7 @@ export default function ButtonNav() {
         onChange={(event, newValue) => {
           setValue(newValue)
         }}
-        onClick={() => globalActions.setView(variabels.ninjaView)}
+        onClick={() => globalActions.setPublicView(variabels.ninjaView)}
         label={<span className={'textFontBottomNav'}>Dagens Ninja</span>}
         className={classes.icon}
         icon={
@@ -54,7 +54,7 @@ export default function ButtonNav() {
       />
       <BottomNavigationAction
         value={1}
-        label={<span className={'textFontBottomNav'}>Lägg till vikt</span>}
+        label={<span className={'textFontBottomNav'}>Styrkekommentarer</span>}
         icon={
           <Icon className={classes.icon}>
             <AddWeight color={classes.text} />}
@@ -64,7 +64,7 @@ export default function ButtonNav() {
         onChange={(event, newValue) => {
           setValue(newValue)
         }}
-        onClick={() => globalActions.setView(variabels.addView)}
+        onClick={() => globalActions.setPublicView(variabels.addCommentView)}
       />
 
       <BottomNavigationAction
@@ -72,22 +72,8 @@ export default function ButtonNav() {
         onChange={(event, newValue) => {
           setValue(newValue)
         }}
-        onClick={() => globalActions.setView(variabels.historyView)}
-        label={<span className={'textFontBottomNav'}>Historik</span>}
-        className={classes.icon}
-        icon={
-          <Icon className={classes.icon}>
-            <AssignmentIcon />
-          </Icon>
-        }
-      />
-      <BottomNavigationAction
-        value={3}
-        onChange={(event, newValue) => {
-          setValue(newValue)
-        }}
-        onClick={() => globalActions.setView(variabels.commentsViewLoggedIn)}
-        label={<span className={'textFontBottomNav'}>Kommentarer</span>}
+        onClick={() => globalActions.setPublicView(variabels.commentView)}
+        label={<span className={'textFontBottomNav'}>Se kommentarer</span>}
         className={classes.icon}
         icon={
           <Icon className={classes.icon}>

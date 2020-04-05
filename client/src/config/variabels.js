@@ -5,7 +5,10 @@ let variabels = {
   url: dev,
   ninjaView: 'ninjaView',
   addView: 'addView',
-  historyView: 'historyView'
+  historyView: 'historyView',
+  addCommentView: 'addCommentView',
+  commentView: 'commentView',
+  commentsViewLoggedIn: 'commentsViewLoggedIn'
 }
 
 export default variabels

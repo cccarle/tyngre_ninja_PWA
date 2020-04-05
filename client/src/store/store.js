@@ -8,10 +8,13 @@ const initialState = {
   showChip: false,
   showModal: false,
   showStartWeightModal: false,
+  showAddComment: false,
+  showCommentChip: false,
   isLoggedIn: false,
   firstLogIn: false,
   authError: '',
   viewToShow: variabels.ninjaView,
+  publicViewToShow: variabels.ninjaView,
   weight: '',
   startWeight: '',
   startWeightFromDB: '',
@@ -19,7 +22,12 @@ const initialState = {
   records: [],
   ninjaRecords: [],
   ninjaOfTheDay: [],
-  loggedInUserEmail: ''
+  loggedInUserEmail: '',
+  selectedHost: '',
+  addCommentMSG: '',
+  commentSender: '',
+  comments: [],
+  publicComments: []
 }
 
 const useGlobal = useGlobalHook(React, initialState, actions)

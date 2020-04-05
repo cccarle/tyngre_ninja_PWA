@@ -9,8 +9,7 @@
   pointer-events: none;
 }
 
-#bg-public {
-}
+#bg-public {}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -32,10 +31,25 @@
   margin-top: 2%;
 }
 
-.textFontMin {
+.textFontSmall {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
   margin-top: 2%;
+  font-size: 11px;
+}
+
+.textFontSmallMargin {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: 2%;
+  margin-left: 6%;
+  font-size: 11px;
+}
+
+.textFontMin {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  margin-top: 1%;
   font-size: 12px;
 }
 
@@ -48,6 +62,13 @@
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
   font-size: 11px;
+}
+
+.textFontRes {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+
+  font-size: 30px;
 }
 
 .textFontNav {
@@ -80,7 +101,14 @@
 .textFontXL {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
-  font-size: 50px;
+  font-size: 40px;
+}
+
+.main {
+  min-width: 110px;
+  max-width: 170px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .textFontSmall {
@@ -90,11 +118,25 @@
   font-size: 13px;
 }
 
+.textFontSmallBold {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 550;
+  margin-top: 2%;
+  font-size: 13px;
+}
+
 .textFontTodaysNinja {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-size: 30px;
 }
+
+.textFontTodaysNinjaSmall {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 .textFontXL2 {
   font-family: 'Raleway', sans-serif;
   font-weight: 500;
@@ -136,6 +178,7 @@
   overflow: hidden;
   text-align: center;
 }
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -161,9 +204,9 @@
 
 .row {
   display: flex;
-  margin-top: 2%;
+  margin-top: 1%;
   text-align: center;
-  width: 101%;
+  width: 100%;
 }
 
 /* Create two equal columns that sits next to each other */
@@ -175,6 +218,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

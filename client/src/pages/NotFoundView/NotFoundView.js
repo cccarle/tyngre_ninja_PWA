@@ -24,7 +24,7 @@ function NotFoundView() {
     <div className="center">
       <span className="textFontXL">Sidan du söker finns inte.</span>
       <span className="textFontPublic">
-        Prova besök någon av följande sidor
+        Prova besök någon av följande sidor.
       </span>
       <div className={classes.spinner}>
         <Button

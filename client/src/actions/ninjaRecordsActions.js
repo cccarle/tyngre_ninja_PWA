@@ -24,25 +24,46 @@ export const calculateNinjaOfTheDay = (ninjaRecords, store) => {
   }
 
   if (ninjaRecords.length == 2) {
-    ninjaRecords = removeDuplicates(ninjaRecords, 'user')
-    addProfileImageToRecords(ninjaRecords)
-    let ninjaOfTheDayObj = ninjaRecords.reduce((prev, current) =>
-      prev.weightDiff > current.weightDiff ? prev : current
-    )
+    if (
+      ninjaRecords[0].weightDiffFromLatest ==
+      ninjaRecords[1].weightDiffFromLatest
+    ) {
+      let ninjaOfTheDayObj = {
+        user: 'Både Andreas och Alex är ninjor idag.',
+        weightDiff: ninjaRecords[0].weightDiffFromLatest,
+      }
+      ninjaData.ninjaRecords = ninjaRecords
+      ninjaData.ninjaOfTheDayObj = ninjaOfTheDayObj
+      store.setState({ ninjaOfTheDay: ninjaData })
+    } else {
+      ninjaRecords = removeDuplicates(ninjaRecords, 'user')
+      addProfileImageToRecords(ninjaRecords)
 
-    ninjaData.ninjaRecords = ninjaRecords
-    ninjaData.ninjaOfTheDayObj = ninjaOfTheDayObj
-    store.setState({ ninjaOfTheDay: ninjaData })
+      let ninjaOfTheDayObj = ninjaRecords.reduce((prev, current) =>
+        prev.weightDiffFromLatest > current.weightDiffFromLatest
+          ? prev
+          : current
+      )
+
+      ninjaData.ninjaRecords = ninjaRecords
+      ninjaData.ninjaOfTheDayObj = ninjaOfTheDayObj
+      store.setState({ ninjaOfTheDay: ninjaData })
+    }
   }
 
   if (ninjaRecords.length == 1) {
     if (ninjaRecords[0].user == 'Alex') {
       ninjaData.message = 'Vi väntar på Andreas, påminn han vetja!'
+      ninjaData.weight = ninjaRecords[0].weight
+      ninjaData.user = ninjaRecords[0].user
       store.setState({ ninjaOfTheDay: ninjaData })
     }
 
     if (ninjaRecords[0].user == 'Andreas') {
       ninjaData.message = 'Vi väntar på Alex, påminn han vetja!'
+      ninjaData.weight = ninjaRecords[0].weight
+      ninjaData.user = ninjaRecords[0].user
+
       store.setState({ ninjaOfTheDay: ninjaData })
     }
   }
@@ -54,8 +75,8 @@ export const calculateNinjaOfTheDay = (ninjaRecords, store) => {
   }
 }
 
-const addProfileImageToRecords = ninjaRecords => {
-  ninjaRecords.map(record => {
+const addProfileImageToRecords = (ninjaRecords) => {
+  ninjaRecords.map((record) => {
     if (record.user == 'Alex') {
       record.img = alexImage
     }

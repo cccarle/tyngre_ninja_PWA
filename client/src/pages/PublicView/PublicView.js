@@ -4,13 +4,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import Avatar from '@material-ui/core/Avatar'
 import { ReactSVG } from 'react-svg'
 import Navbar from '../../components/navbar'
+import PublicBottomNav from '../../components/publicBottomNav'
+
 import history from '../../config/history'
 import svg from '../../assets/img/ninja.svg'
 import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
 import '../../App.css'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listContainer: {
     display: 'flex',
     height: '100%',
@@ -21,11 +23,11 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   large: {
     width: theme.spacing(15),
-    height: theme.spacing(15)
+    height: theme.spacing(15),
   },
   todaysNinja: {
     flexDirection: 'column',
@@ -36,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   todaysNinjaUpperContainer: {
     display: 'flex',
@@ -45,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   todaysNinjaLowContainer: {
     marginTop: theme.spacing(2),
@@ -55,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    textAlign: 'start'
+    textAlign: 'start',
   },
   cont: {
     display: 'flex',
@@ -64,43 +66,60 @@ const useStyles = makeStyles(theme => ({
     alignContent: 'center',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    textAlign: 'start'
+    textAlign: 'start',
   },
   todaysNinjaUpperContainerText: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   ninjaInformation: {
     marginTop: theme.spacing(5),
-    width: '100%'
+    width: '100%',
   },
   margin: {
-    marginTop: theme.spacing(2)
+    marginTop: theme.spacing(2),
   },
   margin2: {
-    marginTop: theme.spacing(5)
+    marginTop: theme.spacing(5),
   },
   svg: {
-    margin: theme.spacing(2)
-  }
+    margin: theme.spacing(2),
+  },
 }))
 
 function NinjaOfTheDayView() {
   const [globalState, globalActions] = useGlobal()
   const classes = useStyles()
 
+  const renderMessage = () => {
+    if (globalState.ninjaOfTheDay.user) {
+      return (
+        <div>
+          <span className="textFontBig">
+            {globalState.ninjaOfTheDay.user} har vägt in på:{' '}
+            {globalState.ninjaOfTheDay.weight} kg
+          </span>
+          <br />
+          <br />
+        </div>
+      )
+    }
+  }
+
   const ninjaMessageToShow = () => {
     if (globalState.ninjaOfTheDay.message) {
       return (
         <div className={classes.waitingForNinja}>
           <ReactSVG
-            beforeInjection={svg => {
+            beforeInjection={(svg) => {
               svg.classList.add('svg-class-name')
               svg.setAttribute('style', 'width:200px')
             }}
             src={svg}
             className={classes.svg}
           />
+
+          {renderMessage()}
 
           <span className="textFontBig">
             {globalState.ninjaOfTheDay.message}
@@ -115,7 +134,7 @@ function NinjaOfTheDayView() {
           <span className="textFontXL">Dagens Ninja</span>
           <div className={classes.todaysNinjaUpperContainer}>
             <ReactSVG
-              beforeInjection={svg => {
+              beforeInjection={(svg) => {
                 svg.classList.add('svg-class-name')
                 svg.setAttribute('style', 'width:140px')
               }}
@@ -199,13 +218,15 @@ function NinjaOfTheDayView() {
   }
 
   return (
-    <div className="appContainer">
-      <Navbar />
-      <div id="bg-public" className={classes.listContainer}>
-        <div className={classes.margin2}></div>
+    <div>
+      <div className="appContainer">
+        <Navbar />
+        <div id="bg-public" className={classes.listContainer}>
+          <div className={classes.margin2}></div>
 
-        {ninjaMessageToShow()}
-        <div className={classes.margin2}></div>
+          {ninjaMessageToShow()}
+          <div className={classes.margin2}></div>
+        </div>
       </div>
     </div>
   )

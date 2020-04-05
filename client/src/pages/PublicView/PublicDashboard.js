@@ -6,45 +6,35 @@ import {
 } from '../../actions'
 import Navbar from '../../components/navbar'
 import useGlobal from '../../store/store'
-import BottomNav from '../../components/bottomNav'
+import PublicBottomNav from '../../components/publicBottomNav'
 import AddView from '../AddView/AddView'
 import HistoryView from '../HistoryView/HistoryView'
 import NinjaOfTheDayView from '../NinjaOfTheDayView/NinjaOfTheDayView'
 import AddCommentView from '../AddCommentView/AddCommentView'
-import CommentsView from '../CommentsView/CommentsView'
-import Chip from '../../components/succsChip'
+import CommentChip from '../../components/commentChip'
+
 import ErrorModal from '../../components/errorModal'
 import StartWeightModal from '../../components/startWeightModal'
 import variabels from '../../config/variabels'
+import CommentsView from './CommentsView'
 
 function Dashboard() {
   const [globalState, globalActions] = useGlobal()
 
   useEffect(() => {
-    fetchRecords(globalState, globalActions)
-    fetchStartWeight(globalState, globalActions)
-    listenForNinjaRecords(globalState, globalActions)
-    globalActions.fetchComments(globalState, globalActions)
+    globalActions.fetchPublicComments(globalState, globalActions)
   }, [])
 
   function viewToShow() {
-    if (globalState.viewToShow == variabels.addView) {
-      return <AddView />
-    }
-
-    if (globalState.viewToShow == variabels.historyView) {
-      return <HistoryView />
-    }
-
-    if (globalState.viewToShow == variabels.ninjaView) {
-      return <NinjaOfTheDayView />
-    }
-
-    if (globalState.viewToShow == variabels.addCommentView) {
+    if (globalState.publicViewToShow == variabels.addCommentView) {
       return <AddCommentView />
     }
 
-    if (globalState.viewToShow == variabels.commentsViewLoggedIn) {
+    if (globalState.publicViewToShow == variabels.ninjaView) {
+      return <NinjaOfTheDayView />
+    }
+
+    if (globalState.publicViewToShow == variabels.commentView) {
       return <CommentsView />
     }
   }
@@ -53,10 +43,8 @@ function Dashboard() {
     <div className="appContainer">
       <Navbar />
       {viewToShow()}
-      <Chip />
-      <ErrorModal />
-      <StartWeightModal />
-      <BottomNav />
+      <PublicBottomNav />
+      <CommentChip />
     </div>
   )
 }

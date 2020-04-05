@@ -15,6 +15,9 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import NijaOfTheDay from './pages/PublicView/PublicView'
 import FirstTimeLogIn from './pages/Auth/FirstTimeLogIn'
 import NotFoundView from './pages/NotFoundView/NotFoundView'
+import AddCommentView from './pages/AddCommentView/AddCommentView'
+import AddCommentModal from './components/addCommentModal'
+import PublicDashboard from './pages/PublicView/PublicDashboard'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -42,7 +45,6 @@ function App() {
     return (
       <div className="center">
         <span className="textFontXL">ninja-projektet</span>
-        <span className="textFontPublic">not approved by tyngre.</span>
         <div className={classes.spinner}>
           <Spinner className={classes.spinner} />
         </div>
@@ -55,7 +57,7 @@ function App() {
       <div className="appContainer">
         <Switch>
           <Route exact path="/login" component={SignInPage} />
-          <Route exact path="/" component={NijaOfTheDay} />
+          <Route exact path="/" component={PublicDashboard} />
           <Route exact path="/first-time-login" component={FirstTimeLogIn} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route component={NotFoundView} />
